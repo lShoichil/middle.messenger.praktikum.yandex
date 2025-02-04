@@ -1,7 +1,10 @@
+import { Message, User } from ".";
+
 export interface Chat {
   id: number;
   name: string;
-  lastMessage: string;
-  time: string;
-  unread: number;
+  messages: Message[];
+  lastMessage: Message;
+  participantIds: User[];
+  unreadCount: number;
 }

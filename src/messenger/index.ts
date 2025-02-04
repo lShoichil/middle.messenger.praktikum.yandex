@@ -2,7 +2,8 @@ import Handlebars from "handlebars";
 import "./style.pcss";
 import { ChatList, ChatPlaceholder } from "./components";
 import { Chat } from "data/Chat";
-import { ChatWindow } from "./components/chat-window/ChatWindow";
+import { ChatWindow } from "./components/chat/chat-window/ChatWindow";
+import { chats } from "../mockData/mockData";
 
 Handlebars.registerPartial("ChatList", ChatList);
 Handlebars.registerPartial("ChatPlaceholder", ChatPlaceholder);
@@ -19,29 +20,7 @@ const template = `
   </div>
 `;
 
-const chats: Chat[] = [
-  {
-    id: 1,
-    name: "Андрей",
-    lastMessage: "Изображение",
-    time: "10:49",
-    unread: 2,
-  },
-  {
-    id: 2,
-    name: "Владимир",
-    lastMessage: "Ласт сообщение",
-    time: "12 марта",
-    unread: 1,
-  },
-  {
-    id: 3,
-    name: "Анатолий",
-    lastMessage: "Изображение",
-    time: "10:49",
-    unread: 2,
-  },
-];
+const chatList = chats;
 
 export const MessengerPage = () => {
   let selectedChat: Chat | null = null;
@@ -54,9 +33,9 @@ export const MessengerPage = () => {
     }
 
     appElement.innerHTML = Handlebars.compile(template)({
-      chatList: ChatList({ chats }),
+      chatList: ChatList({ chats: chatList }),
       chatContent: selectedChat
-        ? ChatWindow({ chat: selectedChat })
+        ? ChatWindow({ chat: selectedChat, currentUserId: 0 })
         : ChatPlaceholder({}),
     });
 
@@ -68,7 +47,7 @@ export const MessengerPage = () => {
       item.addEventListener("click", (event) => {
         const chatId = Number((event.currentTarget as HTMLElement).dataset.id);
         if (chatId) {
-          selectedChat = chats.find((chat) => chat.id === chatId)!;
+          selectedChat = chatList.find((chat) => chat.id === chatId)!;
           render();
         }
       });
