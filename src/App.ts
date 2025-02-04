@@ -17,7 +17,7 @@ const routes: Record<string, () => string> = {
 
 export default class App {
   state = {
-    currentPage: "login",
+    currentPage: "messenger",
   };
 
   constructor() {

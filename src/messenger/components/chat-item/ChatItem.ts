@@ -2,12 +2,16 @@ import Handlebars from "handlebars";
 import "./ChatItem.pcss";
 
 const chatItemTemplate = `
-  <div class="chat-item">
-    <div class="chat-avatar"></div>
-    <div class="chat-content">
-      <div class="chat-name">{{name}}</div>
-      <div class="chat-last-message">{{lastMessage}}</div>
+  <div class="chat-item" {{#if isActive}}active{{/if}}" data-id="{{id}}">
+    <div class="chat-main-info">
+      <div class="chat-avatar"></div>
+
+      <div class="chat-content">
+        <div class="chat-name">{{name}}</div>
+        <div class="chat-last-message">{{lastMessage}}</div>
+      </div>
     </div>
+
     <div class="chat-meta">
       <div class="chat-time">{{time}}</div>
       {{#if unread}}

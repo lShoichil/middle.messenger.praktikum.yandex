@@ -1,14 +1,18 @@
 import Handlebars from "handlebars";
 import "./ChatList.pcss";
-import { ChatItem, SearchBar } from "..";
+import { ChatItem, SearchBar, ProfileButton } from "..";
 import { Chat } from "data/Chat";
 
-export const ChatList = (props: { chats: Chat[] }) => {
-  Handlebars.registerPartial("ChatItem", ChatItem);
+interface IProps { chats: Chat[] }
+
+export const ChatList = (props: IProps) => {
+  Handlebars.registerPartial("ProfileButton", ProfileButton);
   Handlebars.registerPartial("SearchBar", SearchBar);
+  Handlebars.registerPartial("ChatItem", ChatItem);
 
   const chatListTemplate = `
     <div class="chat-list">
+      {{{ProfileButton}}}
       {{{SearchBar}}}
       <div class="chat-list-items">
         {{#each chats}}
@@ -18,5 +22,10 @@ export const ChatList = (props: { chats: Chat[] }) => {
     </div>
   `;
 
-  return Handlebars.compile(chatListTemplate)(props);
+  return Handlebars.compile(chatListTemplate)({
+    ProfileButton: ProfileButton({}),
+    SearchBar: SearchBar({}),
+    ChatItem: (chat: Chat) => ChatItem(chat),
+    chats: props.chats,
+  });
 };
