@@ -17,4 +17,5 @@
 
 ### На веб-приложение:
 
+# todo: Поменять на свою
 Netlify: https://questionnaire-njkadsfh.netlify.app
