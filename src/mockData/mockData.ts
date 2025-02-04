@@ -50,6 +50,7 @@ export const chats: Chat[] = [
       {
         id: 4,
         author: users[0],
+        text: 'Лови волка',
         imageUrl: "https://static.tildacdn.com/tild6535-6136-4162-a361-376135343630/_01.jpg",
         time: new Date(),
       },
@@ -57,6 +58,7 @@ export const chats: Chat[] = [
     lastMessage: {
       id: 4,
       author: users[0],
+      text: 'Лови волка',
       imageUrl: "https://static.tildacdn.com/tild6535-6136-4162-a361-376135343630/_01.jpg",
       time: new Date(),
     },

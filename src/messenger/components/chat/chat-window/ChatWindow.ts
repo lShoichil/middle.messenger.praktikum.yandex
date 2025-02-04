@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 import "./ChatWindow.pcss";
 import { Chat, Message } from "data";
-import { ChatMessage, ChatHeader } from "../../";
+import { ChatHeader, ChatMessage, ChatInput } from "../../";
 
 interface IProps {
   chat: Chat;
@@ -9,21 +9,19 @@ interface IProps {
 }
 
 export const ChatWindow = (props: IProps) => {
-  Handlebars.registerPartial("ChatMessage", ChatMessage);
   Handlebars.registerPartial("ChatHeader", ChatHeader);
+  Handlebars.registerPartial("ChatMessage", ChatMessage);
+  Handlebars.registerPartial("ChatInput", ChatInput);
 
   const chatWindowTemplate = `
     <div class="chat-window">
       {{{chatHeader}}}
-      <div class="chat-messages">
+      <div class="chat-messages-list">
         {{#each messages}}
           {{{this}}}
         {{/each}}
       </div>
-      <div class="chat-input">
-        <input type="text" placeholder="Сообщение" />
-        <button class="send-button">➤</button>
-      </div>
+      {{{chatInput}}}
     </div>
   `;
 
@@ -35,5 +33,6 @@ export const ChatWindow = (props: IProps) => {
         isCurrentUser: message.author.id === props.currentUserId,
       })
     ),
+    chatInput: ChatInput({})
   });
 };
