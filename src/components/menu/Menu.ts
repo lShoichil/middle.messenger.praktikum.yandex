@@ -1,7 +1,5 @@
 import Handlebars from "handlebars";
 import { Input, Button } from "../../components";
-import { MessengerPage } from "../../messenger";
-import { Modal } from "../../messenger/components";
 import { chats } from "../../mockData/mockData";
 import {
   LoginPage,
@@ -15,6 +13,8 @@ import {
 
 import "./Menu.pcss";
 import { User } from "data";
+import { MessengerPage } from "../../pages/messenger";
+import { Modal } from "../../pages/messenger/components";
 
 const me: User = {
   id: 0,

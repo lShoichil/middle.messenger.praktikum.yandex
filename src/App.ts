@@ -20,7 +20,7 @@ import {
   Modal,
   ProfileButton,
   SearchBar,
-} from "./messenger/components";
+} from "./pages/messenger/components";
 import { defaultMenuItemsKey, menuItems } from "./components/menu/Menu";
 
 Handlebars.registerPartial("Input", Input);
