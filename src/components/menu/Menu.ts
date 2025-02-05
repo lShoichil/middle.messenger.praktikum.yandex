@@ -10,9 +10,24 @@ import {
   ErrorNotFoundPage,
   ErrorServerPage,
   ProfileChangePasswordPage,
+  UserProfilePage,
 } from "../../pages";
 
 import "./Menu.pcss";
+import { User } from "data";
+
+const me: User = {
+  id: 0,
+  chatName: "aboba",
+  avatarUrl:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
+  login: "ivanivanov",
+  password: "password",
+  email: "pochta@yandex.ru",
+  phone: "+7 (909) 967 30 30",
+  firstName: "Иван",
+  lastName: "Иванов",
+};
 
 export const menuItems: Record<string, () => string> = {
   login: () =>
@@ -109,41 +124,14 @@ export const menuItems: Record<string, () => string> = {
         type: "submit",
       }),
     }),
-  profileChangeData: () =>
-    ProfileChangeDataPage({
-      user: {
-        id: 0,
-        chatName: "aboba",
-        avatarUrl:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
-        login: "ivanivanov",
-        password: "password",
-        email: "pochta@yandex.ru",
-        phone: "+7 (909) 967 30 30",
-        firstName: "Иван",
-        lastName: "Иванов",
-      },
-    }),
-  profileChangePassword: () =>
-    ProfileChangePasswordPage({
-      user: {
-        id: 0,
-        chatName: "aboba",
-        avatarUrl:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
-        login: "ivanivanov",
-        password: "password",
-        email: "pochta@yandex.ru",
-        phone: "+7 (909) 967 30 30",
-        firstName: "Иван",
-        lastName: "Иванов",
-      },
-    }),
+  profilePage: () => UserProfilePage({ user: me }),
+  profileChangeData: () => ProfileChangeDataPage({ user: me }),
+  profileChangePassword: () => ProfileChangePasswordPage({ user: me }),
   error404: () => ErrorNotFoundPage({}),
   error500: () => ErrorServerPage({}),
 };
 
-export const defaultMenuItemsKey = "profileChangeData";
+export const defaultMenuItemsKey = "profilePage";
 
 interface IProps {}
 
@@ -153,6 +141,7 @@ export const Menu = (props: IProps) => {
     <a href="#" data-page="signUp" class="menu-link">Регистрация</a>
     <a href="#" data-page="messenger" class="menu-link">Мессенджер</a>
     <a href="#" data-page="addUserModal" class="menu-link">Добавить в чат</a>
+    <a href="#" data-page="profilePage" class="menu-link">Профиль</a>
     <a href="#" data-page="profileChangeData" class="menu-link">Редактирование профиля</a>
     <a href="#" data-page="profileChangePassword" class="menu-link">Редактирование пароля</a>
     <a href="#" data-page="error404" class="menu-link">404</a>

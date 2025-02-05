@@ -1,3 +1,5 @@
+export { Link } from "./link/Link";
+export { ProfileListItem } from "./profile-list-item/ProfileListItem";
 export { BackProfileBlock } from "./back-profile-block/BackProfileBlock";
 export { FormTitle } from "./form-title/FormTitle";
 export { Avatar } from "./avatar/Avatar";

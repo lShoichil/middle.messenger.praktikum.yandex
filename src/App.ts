@@ -6,6 +6,7 @@ import {
   Button,
   FormTitle,
   Input,
+  Link,
   Menu,
 } from "./components";
 import {
@@ -23,6 +24,7 @@ import {
 import { defaultMenuItemsKey, menuItems } from "./components/menu/Menu";
 
 Handlebars.registerPartial("Input", Input);
+Handlebars.registerPartial("Link", Link);
 Handlebars.registerPartial("Button", Button);
 Handlebars.registerPartial("Modal", Modal);
 Handlebars.registerPartial("Avatar", Avatar);

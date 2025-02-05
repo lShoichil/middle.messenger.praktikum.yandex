@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
-import "./signup.pcss";
-import { FormTitle } from "./../../components";
+import "../login/login.pcss";
+import { FormTitle, Link } from "./../../components";
 
 interface IProps {
   emailInput: string;
@@ -15,8 +15,8 @@ interface IProps {
 
 export const SignUpPage = (props: IProps) => {
   const template = `
-    <div class="signup-container">
-      <div class="signup-box">
+    <div class="container">
+      <div class="box">
         {{{title}}}
         <form>
           {{{emailInput}}}
@@ -28,8 +28,8 @@ export const SignUpPage = (props: IProps) => {
           {{{passwordRepeatInput}}}
           {{{submitButton}}}
         </form>
-        <p class="signup-footer">
-          <a href="/login">Войти</a>
+        <p class="footer">
+          {{{link}}}
         </p>
       </div>
     </div>
@@ -38,5 +38,6 @@ export const SignUpPage = (props: IProps) => {
   return Handlebars.compile(template)({
     ...props,
     title: FormTitle({ text: "Регистрация" }),
+    link: Link({ text: "Войти", href: "#login" }),
   });
 };

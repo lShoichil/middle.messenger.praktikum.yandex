@@ -33,17 +33,20 @@ export const ProfileChangePasswordPage = ({ user }: IProps) => {
     avatar: Avatar({ imageUrl: user.avatarUrl }),
     title: FormTitle({ text: user.chatName }),
     oldPasswordInput: Input({
+      name: "oldPasswordInput",
       label: "Старый пароль",
       type: "text",
       placeholder: "Введите пароль",
       value: user.password,
     }),
     newPasswordInput: Input({
+      name: "newPasswordInput",
       label: "Новый пароль",
       type: "password",
       placeholder: "Введите пароль",
     }),
     newPasswordRepeatInput: Input({
+      name: "newPasswordRepeatInput",
       label: "Повторите новый пароль",
       type: "password",
       placeholder: "Введите пароль",
