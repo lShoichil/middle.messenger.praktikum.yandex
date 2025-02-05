@@ -9,7 +9,7 @@ import { MessengerPage } from "./messenger";
 
 const routes: Record<string, () => string> = {
   login: LoginPage,
-  signup: SignUpPage,
+  signUp: SignUpPage,
   messenger: MessengerPage,
   error404: ErrorNotFoundPage,
   error500: ErrorServerPage,
@@ -29,7 +29,15 @@ export default class App {
     const appElement = document.getElementById("app");
     if (!appElement) return console.error("Элемент #app не найден");
 
-    appElement.innerHTML = `${Menu()}<div id="page-content">${Component()}</div>`;
+    appElement.innerHTML = `
+      <div id="page-header">
+        ${Menu()}
+      </div>
+      <div id="page-content">
+        ${Component()}
+      </div>
+    `;
+
     this.attachEventListeners();
   }
 
