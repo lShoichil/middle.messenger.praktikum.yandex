@@ -3,6 +3,8 @@
 
 Самый обычный мессенджер
 
+Между всеми свёрстанными страницами можно переключится с помощью меню
+
 ## Дизайн
 [Макет](https://www.figma.com/design/5RrnBZvElcfQRaIa0AMcul/yandex-messanger?node-id=0-1&m=dev&t=Zkt5bxongHMW9406-1)
 
@@ -18,4 +20,4 @@
 ### На веб-приложение:
 
 # todo: Поменять на свою
-Netlify: https://questionnaire-njkadsfh.netlify.app
+[Netlify](https://leningdenisyandexmessanger.netlify.app)

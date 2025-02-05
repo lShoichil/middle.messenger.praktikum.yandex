@@ -7,3 +7,4 @@ export { BackButton } from "./back-button/BackButton";
 export { Button } from "./button/Button";
 export { Input } from "./input/Input";
 export { Menu } from "./menu/Menu";
+export { Modal } from "./modal/Modal";

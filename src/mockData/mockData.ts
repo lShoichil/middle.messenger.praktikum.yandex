@@ -1,18 +1,85 @@
 import { User, Chat } from "data";
 
 export const users: User[] = [
-  { id: 0, name: "Денис" },
-  { id: 1, name: "Андрей" },
-  { id: 2, name: "Владимир" },
-  { id: 3, name: "Анатолий" },
-  { id: 4, name: "Екатерина" },
-  { id: 5, name: "Игорь" },
+  {
+    id: 0,
+    chatName: "denchik",
+    avatarUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
+    login: "denis123",
+    password: "securePass1",
+    email: "denis@example.com",
+    phone: "+7 (903) 111 22 33",
+    firstName: "Денис",
+    lastName: "Петров",
+  },
+  {
+    id: 1,
+    chatName: "andryusha",
+    avatarUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
+    login: "andrey1995",
+    password: "pass1234",
+    email: "andrey@example.com",
+    phone: "+7 (904) 222 33 44",
+    firstName: "Андрей",
+    lastName: "Сидоров",
+  },
+  {
+    id: 2,
+    chatName: "vova_best",
+    avatarUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
+    login: "vova007",
+    password: "qwerty",
+    email: "vladimir@example.com",
+    phone: "+7 (905) 333 44 55",
+    firstName: "Владимир",
+    lastName: "Кузнецов",
+  },
+  {
+    id: 3,
+    chatName: "tolyan",
+    avatarUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
+    login: "anatoliy_super",
+    password: "admin123",
+    email: "anatoliy@example.com",
+    phone: "+7 (906) 444 55 66",
+    firstName: "Анатолий",
+    lastName: "Михайлов",
+  },
+  {
+    id: 4,
+    chatName: "katya_sun",
+    avatarUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
+    login: "ekaterina88",
+    password: "helloWorld",
+    email: "ekaterina@example.com",
+    phone: "+7 (907) 555 66 77",
+    firstName: "Екатерина",
+    lastName: "Алексеева",
+  },
+  {
+    id: 5,
+    chatName: "igor_pro",
+    avatarUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4e0xMkOMp_Icz6fEVp3Euhu_r2s7fbogtA&s",
+    login: "igorx",
+    password: "superSafePass",
+    email: "igor@example.com",
+    phone: "+7 (908) 666 77 88",
+    firstName: "Игорь",
+    lastName: "Зайцев",
+  },
 ];
+
 
 export const chats: Chat[] = [
   {
     id: 1,
-    name: users[1].name,
+    name: users[1].chatName,
     participantIds: [users[0], users[1]],
     messages: [
       {
@@ -38,7 +105,7 @@ export const chats: Chat[] = [
   },
   {
     id: 2,
-    name: users[2].name,
+    name: users[2].chatName,
     participantIds: [users[0], users[2]],
     messages: [
       {

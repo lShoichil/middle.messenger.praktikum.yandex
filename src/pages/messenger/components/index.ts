@@ -1,4 +1,3 @@
-export { Modal } from "./chat/chat-window/modal/Modal";
 export { ChatInput } from "./chat/chat-window/chat-input/ChatInput";
 export { ChatHeader } from "./chat/chat-window/chat-header/ChatHeader";
 export { ChatMessage } from "./chat/chat-window/chat-message/ChatMessage";

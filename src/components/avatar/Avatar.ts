@@ -11,7 +11,10 @@ export const Avatar = (props: IProps) => {
       {{#if imageUrl}}
         <img src="{{imageUrl}}" alt="Avatar" class="avatar__image" />
       {{/if}}
-      <div class="avatar__overlay">Поменять аватар</div>
+      <div class="avatar__overlay">
+        <label for="avatar-upload" class="avatar__label">Поменять аватар</label>
+        <input type="file" id="avatar-upload" name="avatar" class="avatar__input" accept="image/*" />
+      </div>
     </div>
   `;
 

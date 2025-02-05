@@ -1,5 +1,6 @@
 export { LoginPage } from "./login/login";
 export { SignUpPage } from "./sign-up/SignUp";
+export { ModalsView } from "./modals-view/ModalsView";
 export { ErrorNotFoundPage } from "./error-not-found/ErrorNotFound";
 export { ErrorServerPage } from "./error-server/ErrorServer";
 export { UserProfilePage } from "./user-profile/UserProfile";

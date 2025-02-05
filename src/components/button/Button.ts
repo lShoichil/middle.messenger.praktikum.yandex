@@ -1,8 +1,8 @@
 import Handlebars from "handlebars";
-import "./Button.pcss";
+import "./button.pcss";
 
 const buttonTemplate = `
-  <button id="{{id}}" class="button" {{#if disabled}} disabled {{/if}}>
+  <button id="{{id}}" class="button" type="{{type}}" {{#if disabled}} disabled {{/if}}>
     {{text}}
   </button>
 `;

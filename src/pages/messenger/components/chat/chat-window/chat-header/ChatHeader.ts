@@ -7,7 +7,7 @@ interface IProps {
 
 export const ChatHeader = (props: IProps) => {
   const chatHeaderTemplate = `
-    <div class="chat-header">
+    <header class="chat-header">
       <div class="chat-header__left">
         <div class="chat-header__avatar"></div>
         <span class="chat-header__name">{{name}}</span>
@@ -20,7 +20,7 @@ export const ChatHeader = (props: IProps) => {
         </svg>
       </div>
       {{{modal}}}
-    </div>
+    </header>
   `;
 
   return Handlebars.compile(chatHeaderTemplate)({

@@ -1,16 +1,12 @@
 import Handlebars from "handlebars";
 import "../error-server/error.pcss";
 
-interface IProps {}
+const template = `
+<div class="error-container">
+  <h1 class="error-code">404</h1>
+  <p class="error-message">Не туда попали</p>
+  <a href="/" class="error-link">Назад к чату</a>
+</div>
+`;
 
-export const ErrorNotFoundPage = (props: IProps) => {
-  const template = `
-    <div class="error-container">
-      <h1 class="error-code">404</h1>
-      <p class="error-message">Не туда попали</p>
-      <a href="/" class="error-link">Назад к чату</a>
-    </div>
-  `;
-
-  return Handlebars.compile(template)(props);
-};
+export const ErrorNotFoundPage = Handlebars.compile(template)

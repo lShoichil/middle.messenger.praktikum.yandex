@@ -1,9 +1,4 @@
-module.exports = {
-  settings: {
-    react: {
-      version: '999.999.999'
-    }
-  },
+export default [{
   env: {
     node: true,
     browser: true,
@@ -11,7 +6,6 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier'
@@ -22,7 +16,8 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'only-error'],
+  plugins: ['@typescript-eslint', 'only-error'],
+  ignores: ["node_modules/**/*", "dist/**/*"],
   rules: {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
@@ -30,9 +25,6 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
 
     '@typescript-eslint/no-empty-function': 'error',
-    'react/prop-types': 'off',
-    'react/display-name': 'off',
-    //'react-hooks/exhaustive-deps': 'warn',
     'prettier/prettier': [
       'error', //error after code clear
       {
@@ -41,4 +33,4 @@ module.exports = {
       }
     ]
   }
-};
+}] ;

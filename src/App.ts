@@ -8,6 +8,7 @@ import {
   Input,
   Link,
   Menu,
+  Modal
 } from "./components";
 import {
   ChatHeader,
@@ -17,7 +18,6 @@ import {
   ChatMessage,
   ChatPlaceholder,
   ChatWindow,
-  Modal,
   ProfileButton,
   SearchBar,
 } from "./pages/messenger/components";
@@ -57,12 +57,12 @@ export default class App {
     if (!appElement) return console.error("Элемент #app не найден");
 
     appElement.innerHTML = `
-      <div id="page-header">
+      <header id="page-header">
         ${Menu({})}
-      </div>
-      <div id="page-content">
+      </header>
+      <section id="page-content">
         ${Component()}
-      </div>
+      </section>
     `;
 
     this.attachEventListeners();
@@ -73,7 +73,7 @@ export default class App {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const page = (e.target as HTMLElement).dataset.page;
-        page && this.changePage(page);
+        if(page) this.changePage(page);
       });
     });
   }

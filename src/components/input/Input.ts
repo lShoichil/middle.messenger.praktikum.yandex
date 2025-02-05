@@ -1,10 +1,10 @@
 import Handlebars from "handlebars";
-import "./input.pcss";
+import "./Input.pcss";
 
 const inputTemplate = `<div class="input-container">
   <label for="{{name}}" class="input-label">{{label}}</label>
   <input
-    id="{{name}}"
+    id="{{id}}"
     type="{{type}}"
     name="{{name}}"
     placeholder="{{placeholder}}"
