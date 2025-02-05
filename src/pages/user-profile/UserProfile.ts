@@ -1,6 +1,12 @@
 import Handlebars from "handlebars";
 import "./UserProfile.pcss";
-import { Avatar, FormTitle, Link, ProfileListItem } from "../../components";
+import {
+  Avatar,
+  BackProfileBlock,
+  FormTitle,
+  Link,
+  ProfileListItem,
+} from "../../components";
 import { User } from "data";
 
 interface IProps {
@@ -28,9 +34,11 @@ export const UserProfilePage = ({ user }: IProps) => {
   const profileLinksHTML = profileLinks.map((link) => Link(link)).join("");
 
   const userProfileTemplate = `
-    <div class="user-profile">
-      {{{avatar}}}
-      {{{title}}}
+  <div>
+      {{{backProfileBlock}}}
+      <div class="user-profile">
+        {{{avatar}}}
+        {{{title}}}
       <div class="profile-info-list">
         ${profileList}
       </div>
@@ -38,9 +46,11 @@ export const UserProfilePage = ({ user }: IProps) => {
         ${profileLinksHTML}
       </div>
     </div>
-   `;
+  </div>
+`;
 
   return Handlebars.compile(userProfileTemplate)({
+    backProfileBlock: BackProfileBlock,
     avatar: Avatar({ imageUrl: user.avatarUrl }),
     title: FormTitle({ text: user.chatName }),
   });
