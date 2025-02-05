@@ -1,0 +1,13 @@
+import Handlebars from "handlebars";
+import "./FormTitle.pcss";
+
+interface IProps {
+  text: string;
+  className?: string;
+}
+
+export const FormTitle = (props: IProps) => {
+  const formTitleTemplate = `<h2 class="title {{className}}">{{text}}</h2>`;
+
+  return Handlebars.compile(formTitleTemplate)(props);
+};

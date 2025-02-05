@@ -1,4 +1,11 @@
 export interface User {
   id: number;
-  name: string;
+  chatName: string;
+  avatarUrl?: string;
+  login: string;
+  password: string;
+  email: string;
+  phone: string;
+  firstName: string;
+  lastName: string;
 }

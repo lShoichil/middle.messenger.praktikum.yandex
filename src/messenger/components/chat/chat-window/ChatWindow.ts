@@ -9,10 +9,6 @@ interface IProps {
 }
 
 export const ChatWindow = (props: IProps) => {
-  Handlebars.registerPartial("ChatHeader", ChatHeader);
-  Handlebars.registerPartial("ChatMessage", ChatMessage);
-  Handlebars.registerPartial("ChatInput", ChatInput);
-
   const chatWindowTemplate = `
     <div class="chat-window">
       {{{chatHeader}}}

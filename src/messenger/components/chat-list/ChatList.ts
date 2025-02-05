@@ -6,10 +6,6 @@ import { Chat } from "data/Chat";
 interface IProps { chats: Chat[] }
 
 export const ChatList = (props: IProps) => {
-  Handlebars.registerPartial("ProfileButton", ProfileButton);
-  Handlebars.registerPartial("SearchBar", SearchBar);
-  Handlebars.registerPartial("ChatItem", ChatItem);
-
   const chatListTemplate = `
     <div class="chat-list">
       {{{ProfileButton}}}

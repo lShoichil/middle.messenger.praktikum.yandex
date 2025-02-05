@@ -9,14 +9,15 @@ interface IProps {
 export const Modal = (props: IProps) => {
   const modalTemplate = `
   <div class="modal">
-    <div class="modal__overlay"></div>
     <div class="modal__content">
-      <h3>Добавить пользователя</h3>
-      {{{loginInput}}}
-      {{{submitButton}}}
+      <h2 class="title">Добавить пользователя</h2>
+      <form>
+        {{{loginInput}}}
+        {{{submitButton}}}
+      </form>
     </div>
   </div>
   `;
 
-  return Handlebars.compile(modalTemplate)({...props});
+  return Handlebars.compile(modalTemplate)({ ...props });
 };

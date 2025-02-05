@@ -1,14 +1,18 @@
 import Handlebars from "handlebars";
-import { Button, Input } from "../../components";
 import "./login.pcss";
+import { FormTitle } from "./../../components";
 
-Handlebars.registerPartial("Button", Button);
-Handlebars.registerPartial("Input", Input);
+interface IProps {
+  loginInput: string;
+  passwordInput: string;
+  submitButton: string;
+}
 
-const template = `
+export const LoginPage = (props: IProps) => {
+  const template = `
   <div class="login-container">
     <div class="login-box">
-      <h2 class="login-title">Вход</h2>
+      {{{title}}}
       <form>
         {{{loginInput}}}
         {{{passwordInput}}}
@@ -21,25 +25,8 @@ const template = `
   </div>
 `;
 
-export const LoginPage = () => {
   return Handlebars.compile(template)({
-    loginInput: Input({
-      label: "Логин",
-      type: "text",
-      name: "login",
-      placeholder: "Введите логин",
-      error: "Текст ошибки",
-    }),
-    passwordInput: Input({
-      label: "Пароль",
-      type: "password",
-      name: "password",
-      placeholder: "Введите пароль",
-      error: "Текст ошибки",
-    }),
-    submitButton: Button({
-      text: "Авторизоваться",
-      type: "submit",
-    }),
+    ...props,
+    title: FormTitle({ text: "Вход" }),
   });
 };

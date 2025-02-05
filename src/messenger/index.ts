@@ -3,26 +3,23 @@ import "./style.pcss";
 import { ChatList, ChatPlaceholder } from "./components";
 import { Chat } from "data/Chat";
 import { ChatWindow } from "./components/chat/chat-window/ChatWindow";
-import { chats } from "../mockData/mockData";
 
-Handlebars.registerPartial("ChatList", ChatList);
-Handlebars.registerPartial("ChatPlaceholder", ChatPlaceholder);
-Handlebars.registerPartial("ChatWindow", ChatWindow);
+interface IProps {
+  chats: Chat[];
+}
 
-const template = `
-  <div class="messenger">
-    <div class="left-content">
-      {{{chatList}}}
+export const MessengerPage = ({ chats: chatList }: IProps) => {
+  const template = `
+    <div class="messenger">
+      <div class="left-content">
+        {{{chatList}}}
+      </div>
+      <div class="right-content">
+        {{{chatContent}}}
+      </div>
     </div>
-    <div class="right-content">
-      {{{chatContent}}}
-    </div>
-  </div>
-`;
+  `;
 
-const chatList = chats;
-
-export const MessengerPage = () => {
   let selectedChat: Chat | null = null;
 
   const render = () => {
@@ -54,7 +51,7 @@ export const MessengerPage = () => {
     });
   };
 
+  // todo: очень не уверен что это правильно так использовать
   setTimeout(render, 0);
-
   return "";
 };

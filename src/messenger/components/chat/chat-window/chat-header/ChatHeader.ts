@@ -1,6 +1,4 @@
 import Handlebars from "handlebars";
-import { Button, Input } from "../../../../../components";
-import { Modal } from "../../../../components";
 import "./ChatHeader.pcss";
 
 interface IProps {
@@ -8,10 +6,6 @@ interface IProps {
 }
 
 export const ChatHeader = (props: IProps) => {
-  Handlebars.registerPartial("Input", Input);
-  Handlebars.registerPartial("Button", Button);
-  Handlebars.registerPartial("Modal", Modal);
-
   const chatHeaderTemplate = `
     <div class="chat-header">
       <div class="chat-header__left">
@@ -31,18 +25,5 @@ export const ChatHeader = (props: IProps) => {
 
   return Handlebars.compile(chatHeaderTemplate)({
     name: props.name,
-    modal: Modal({
-      loginInput: Input({
-        label: "Логин",
-        type: "text",
-        name: "login",
-        placeholder: "Введите логин",
-        error: "Текст ошибки",
-      }),
-      submitButton: Button({
-        text: "Добавить",
-        type: "submit",
-      }),
-    }),
   });
-};
+}  
