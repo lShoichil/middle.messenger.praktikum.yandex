@@ -7,12 +7,12 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
-.chat-header__left {
+.chat-header-left {
   display: flex;
   align-items: center;
 }
 
-.chat-header__avatar {
+.chat-header-avatar {
   width: 34px;
   height: 34px;
   background-color: #efefef;
@@ -20,17 +20,17 @@
   margin-right: 10px;
 }
 
-.chat-header__name {
+.chat-header-name {
   font-size: 14px;
   font-weight: 600;
   color: #1e1e1e;
 }
 
-.chat-header__options {
+.chat-header-options {
   display: flex;
   align-items: center;
 }
 
-.chat-header__icon {
+.chat-header-icon {
   cursor: pointer;
 }

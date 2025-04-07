@@ -1,9 +1,19 @@
-export { ChatInput } from "./chat/chat-window/chat-input/ChatInput";
-export { ChatHeader } from "./chat/chat-window/chat-header/ChatHeader";
-export { ChatMessage } from "./chat/chat-window/chat-message/ChatMessage";
-export { ChatPlaceholder } from "./chat/chat-placeholder/ChatPlaceholder";
-export { ProfileButton } from "./chat-list/profile-button/ProfileButton";
-export { ChatWindow } from "./chat/chat-window/ChatWindow";
-export { SearchBar } from "./chat-list/search-bar/SearchBar";
-export { ChatList } from "./chat-list/ChatList";
-export { ChatItem } from "./chat-list/chat-item/ChatItem";
+import ProfileButton from './chat-list/profile-button/ProfileButton';
+import SearchBar from './chat-list/search-bar/SearchBar';
+import ChatList from './chat-list/ChatList';
+import ChatItem from './chat-list/chat-item/ChatItem';
+import ChatInput from './chat/chat-window/chat-input/ChatInput';
+import ChatHeader from './chat/chat-window/chat-header/ChatHeader';
+import ChatMessage from './chat/chat-window/chat-message/ChatMessage';
+import ChatPlaceholder from './chat/chat-placeholder/ChatPlaceholder';
+import ChatWindow from './chat/chat-window/ChatWindow';
+
+export { ChatInput };
+export { ChatHeader };
+export { ChatMessage };
+export { ChatPlaceholder };
+export { ProfileButton };
+export { ChatWindow };
+export { SearchBar };
+export { ChatList };
+export { ChatItem };

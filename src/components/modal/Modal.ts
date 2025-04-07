@@ -1,41 +1,48 @@
-import Handlebars from "handlebars";
-import "./Modal.pcss";
+import { Props } from '../../data';
+import Block from '../../core/Block';
+import './Modal.scss';
 
-interface IProps {
-  title: string;
-  submitButton: string;
+interface IProps extends Props {
+  title: Block<Props>;
+  submitButton: Block<Props>;
   fileName?: string;
-  loginInput?: string;
-  link?: string;
+  loginInput?: Block<Props>;
+  link?: Block<Props>;
   errorMessage?: string;
 }
 
-export const Modal = (props: IProps) => {
-  const modalTemplate = `
-    <div class="modal__content">
-      <div class="modal__title">{{{title}}}</div>
-      <form>
-        {{#if loginInput}}
-          {{{loginInput}}}
-        {{/if}}
+export default class Modal extends Block<IProps> {
+  constructor(props: IProps) {
+    super({ ...props });
+  }
 
-        {{#if fileName}}
-          <p class="modal__file-name">{{fileName}}</p>
-        {{/if}}
+  render() {
+    const template = `  
+      <div class="modal-content">
+        <div class="modal-title">{{{title}}}</div>
+        <form>
+          {{#if loginInput}}
+            {{{loginInput}}}
+          {{/if}}
 
-        {{#if link}}
-          <div class="modal__file-link">
-            {{{link}}}
-          </div>
-        {{/if}}
-          
-        {{{submitButton}}}
-        {{#if errorMessage}}
-          <p class="modal__error">{{errorMessage}}</p>
-        {{/if}}  
-      </form>
-      </div>
-  `;
+          {{#if fileName}}
+            <p class="modal-file-name">{{fileName}}</p>
+          {{/if}}
 
-  return Handlebars.compile(modalTemplate)(props);
-};
+          {{#if link}}
+            <div class="modal-file-link">
+              {{{link}}}
+            </div>
+          {{/if}}
+            
+          {{{submitButton}}}
+          {{#if errorMessage}}
+            <p class="modal-error">{{errorMessage}}</p>
+          {{/if}}  
+        </form>
+        </div>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}

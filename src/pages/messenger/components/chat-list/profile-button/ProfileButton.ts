@@ -1,8 +1,19 @@
-import Handlebars from "handlebars";
-import "./ProfileButton.pcss";
+import { Props } from '../../../../../data';
+import Block from '../../../../../core/Block';
+import './ProfileButton.scss';
 
-const profileButtonTemplate = `<div class="profile-button">
-  <a href="/profile">Профиль ></a>
-</div>`;
+export default class ProfileButton extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
 
-export const ProfileButton = Handlebars.compile(profileButtonTemplate);
+  render() {
+    const template = `  
+    <div class="profile-button">
+      <a href="/profile">Профиль ></a>
+    </div>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}

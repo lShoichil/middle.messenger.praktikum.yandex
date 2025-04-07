@@ -15,9 +15,12 @@
 
 Запустить проект на localhost: `npm start`
 
+Запустить линтер: `npm run lint`
+
 ## Ссылки:
 
 ### На веб-приложение:
-
-# todo: Поменять на свою
 [Netlify](https://leningdenisyandexmessanger.netlify.app)
+
+### Контакт:
+[Telegram](https://t.me/Shoichi_dl)

@@ -1,4 +1,4 @@
-import { User } from ".";
+import { User } from '.';
 
 export interface Message {
   id: number;

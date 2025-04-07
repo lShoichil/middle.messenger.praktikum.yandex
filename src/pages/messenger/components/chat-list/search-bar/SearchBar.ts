@@ -1,8 +1,19 @@
-import Handlebars from "handlebars";
-import "./SearchBar.pcss";
+import { Props } from '../../../../../data';
+import Block from '../../../../../core/Block';
+import './SearchBar.scss';
 
-const searchBarTemplate = `<div class="search-bar">
-  <input type="text" class="search-input" placeholder="Поиск" />
-</div>`;
+export default class SearchBar extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
 
-export const SearchBar = Handlebars.compile(searchBarTemplate);
+  render() {
+    const template = `  
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="Поиск" />
+    </div>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}

@@ -10,19 +10,19 @@
   background: #000; /* Фон для проверки */
 }
 
-.avatar__image {
+.avatar-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.avatar__overlay {
+.avatar-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgb(0 0 0 / 60%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,15 +32,15 @@
   transition: opacity 0.3s ease;
 }
 
-.avatar:hover .avatar__overlay {
+.avatar:hover .avatar-overlay {
   opacity: 1;
 }
 
-.avatar__input {
+.avatar-input {
   display: none;
 }
 
-.avatar__label {
+.avatar-label {
   cursor: pointer;
   display: flex;
   align-items: center;

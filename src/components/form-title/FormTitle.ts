@@ -1,14 +1,21 @@
-import Handlebars from "handlebars";
-import "./FormTitle.pcss";
+import { Props } from '../../data';
+import Block from '../../core/Block';
+import './FormTitle.scss';
 
-interface IProps {
+interface IProps extends Props {
   text: string;
   isError?: boolean;
   className?: string;
 }
 
-export const FormTitle = (props: IProps) => {
-  const formTitleTemplate = `<h2 class="title {{className}} {{#if isError}}error{{/if}}">{{text}}</h2>`;
+export default class FormTitle extends Block<IProps> {
+  constructor(props: IProps) {
+    super({ ...props });
+  }
 
-  return Handlebars.compile(formTitleTemplate)(props);
-};
+  render() {
+    const template = `<h2 class="title {{className}} {{#if isError}}error{{/if}}">{{text}}</h2>`;
+
+    return this.compile(template, this.props);
+  }
+}

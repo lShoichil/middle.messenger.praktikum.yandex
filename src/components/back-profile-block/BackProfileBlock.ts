@@ -1,15 +1,23 @@
-import Handlebars from "handlebars";
-import "./BackProfileBlock.pcss";
-import { BackButton } from "./../../components";
+import { Props } from '../../data';
+import Block from '../../core/Block';
+import './BackProfileBlock.scss';
+import { BackButton } from './../../components';
 
-export const BackProfileBlock = () => {
-  const backProfileBlockTemplate = `
-  <div class="back-profile-block">
-    {{{backButton}}}
-  </div>
-`;
+export default class BackProfileBlock extends Block<Props> {
+  constructor(props: Props) {
+    super({
+      ...props,
+      backButton: new BackButton({})
+    });
+  }
 
-  return Handlebars.compile(backProfileBlockTemplate)({
-    backButton: BackButton,
-  });
-};
+  render() {
+    const template = `  
+      <div class="back-profile-block">
+        {{{backButton}}}
+      </div>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}

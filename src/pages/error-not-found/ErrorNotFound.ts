@@ -1,12 +1,21 @@
-import Handlebars from "handlebars";
-import "../error-server/error.pcss";
+import { Props } from '../../data';
+import Block from '../../core/Block';
+import '../error-server/error.scss';
 
-const template = `
-<div class="error-container">
-  <h1 class="error-code">404</h1>
-  <p class="error-message">Не туда попали</p>
-  <a href="/" class="error-link">Назад к чату</a>
-</div>
-`;
+export default class ErrorNotFoundPage extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
 
-export const ErrorNotFoundPage = Handlebars.compile(template)
+  render() {
+    const template = `  
+    <div class="error-container">
+      <h1 class="error-code">404</h1>
+      <p class="error-message">Не туда попали</p>
+      <a href="/" class="error-link">Назад к чату</a>
+    </div>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}

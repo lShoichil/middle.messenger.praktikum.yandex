@@ -1,4 +1,4 @@
-import { Message, User } from ".";
+import { Message, User } from '.';
 
 export interface Chat {
   id: number;

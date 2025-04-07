@@ -1,8 +1,19 @@
-import Handlebars from "handlebars";
-import "./ChatPlaceholder.pcss";
+import { Props } from '../../../../../data';
+import Block from '../../../../../core/Block';
+import './ChatPlaceholder.scss';
 
-const chatPlaceholderTemplate = `<div class="chat-placeholder">
-  Выберите чат, чтобы отправить сообщение
-</div>`;
+export default class ChatPlaceholder extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
 
-export const ChatPlaceholder = Handlebars.compile(chatPlaceholderTemplate);
+  render() {
+    const template = `  
+    <div class="chat-placeholder">
+      Выберите чат, чтобы отправить сообщение
+    </div>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}

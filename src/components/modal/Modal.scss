@@ -1,31 +1,30 @@
-.modal__content {
+.modal-content {
   width: 340px;
   padding: 20px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.modal__file-name {
+.modal-file-name {
   font-size: 14px;
   color: gray;
   margin: 30px;
 }
 
-.modal__file-link {
+.modal-file-link {
   font-size: 14px;
   color: blue;
   text-decoration: underline;
-  margin-bottom: 20px;
+  margin: 30px 0 20px;
   cursor: pointer;
-  margin: 30px;
 }
 
-.modal__error {
+.modal-error {
   color: red;
   font-size: 12px;
   margin-top: 10px;

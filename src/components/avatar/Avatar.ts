@@ -1,22 +1,25 @@
-import Handlebars from "handlebars";
-import "./Avatar.pcss";
+import './Avatar.scss';
+import Block from '../../core/Block';
+import { Props } from '../../data';
 
-interface IProps {
-  imageUrl?: string;
-}
+export default class Avatar extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
 
-export const Avatar = (props: IProps) => {
-  const avatarTemplate = `
+  render() {
+    const template = `  
     <div class="avatar">
       {{#if imageUrl}}
-        <img src="{{imageUrl}}" alt="Avatar" class="avatar__image" />
+        <img src="{{imageUrl}}" alt="Avatar" class="avatar-image" />
       {{/if}}
-      <div class="avatar__overlay">
-        <label for="avatar-upload" class="avatar__label">Поменять аватар</label>
-        <input type="file" id="avatar-upload" name="avatar" class="avatar__input" accept="image/*" />
+      <div class="avatar-overlay">
+        <label for="avatar-upload" class="avatar-label">Поменять аватар</label>
+        <input type="file" id="avatar-upload" name="avatar" class="avatar-input" accept="image/*" />
       </div>
     </div>
-  `;
+    `;
 
-  return Handlebars.compile(avatarTemplate)(props);
-};
+    return this.compile(template, this.props);
+  }
+}
