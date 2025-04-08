@@ -13,7 +13,8 @@ export default class MessengerPage extends Block<IProps> {
   constructor(props: IProps) {
     super({
       ...props,
-      chatList: new ChatList({ chats: props.chats })
+      chatList: new ChatList({ componentName: 'chatlist', chats: props.chats }),
+      chatContent: new ChatPlaceholder({})
     });
   }
 
@@ -31,16 +32,8 @@ export default class MessengerPage extends Block<IProps> {
 
     this.attachEventListeners();
 
-    const chatContent = this.selectedChat
-      ? new ChatWindow({ chat: this.selectedChat, currentUserId: 0 })
-      : new ChatPlaceholder({});
-
-    console.log('only props', { ...this.props });
-    console.log('with chatContent', { ...this.props, chatContent });
-
     return this.compile(template, {
-      ...this.props,
-      chatContent
+      ...this.props
     });
   }
 

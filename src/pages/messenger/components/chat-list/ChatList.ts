@@ -24,11 +24,13 @@ export default class ChatList extends Block<IProps> {
     <div class="chat-list">
       {{{profileButton}}}
       {{{searchBar}}}
+
       <div class="chat-list-items">
         {{#each chatItems}}
           {{{this}}}
         {{/each}}
       </div>
+
     </div>
     `;
 

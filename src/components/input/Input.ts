@@ -18,7 +18,9 @@ export default class Input extends Block<InputProps> {
     super({
       ...props,
       events: {
-        blur: () => this.validate()
+        blur: () => {
+          this.validate();
+        }
       }
     });
   }
@@ -34,6 +36,7 @@ export default class Input extends Block<InputProps> {
         placeholder="{{placeholder}}"
         class="input-field"
         ref="input"
+        event-listener
       />
       {{#if error}}
         <p class="input-error">{{error}}</p>
@@ -44,20 +47,19 @@ export default class Input extends Block<InputProps> {
   }
 
   private _value() {
-    const htmlInputElement = this.refs.input.element as HTMLInputElement;
-    return htmlInputElement.value;
+    const input: HTMLInputElement = this.getContent('input') as HTMLInputElement;
+
+    return input.value;
   }
 
   public value() {
-    this.validate();
     return this._value();
   }
 
   private _validate() {
-    console.log('Validate...');
-    const inputElement = this.refs.input.element as HTMLInputElement;
+    const inputValue = this.value();
 
-    return VALIDATION_RULES[inputElement.name].test(inputElement.value);
+    return VALIDATION_RULES[this.props.name].test(inputValue);
   }
 
   public validate(): boolean {
@@ -69,14 +71,16 @@ export default class Input extends Block<InputProps> {
         error: null,
         value: this._value()
       });
+
       return true;
     }
-    const inputElement = this.refs.input.element as HTMLInputElement;
+
     this.setProps({
       ...this.props,
-      error: VALIDATION_ERRORS[inputElement.name],
+      error: VALIDATION_ERRORS[this.props.name],
       value: this._value()
     });
+
     return false;
   }
 }

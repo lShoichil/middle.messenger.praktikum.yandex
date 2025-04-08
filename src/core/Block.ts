@@ -32,6 +32,7 @@ export default class Block<Props extends Record<string, unknown>> {
     const propsWithId = { ...props, __id: this.id };
 
     this.children = children;
+
     this.props = this._makePropsProxy(propsWithId);
 
     this.eventBus = () => eventBus;
@@ -50,9 +51,27 @@ export default class Block<Props extends Record<string, unknown>> {
   _getPropsAndChildren(propsAndChildren: Record<string, unknown>) {
     const children: Record<string, Block<Props>> = {};
     const props: Record<string, unknown> = {};
+
     Object.entries(propsAndChildren).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        props[key] = [];
+
+        value.forEach((item, idx) => {
+          if (item instanceof Block) {
+            children[`${key}_${idx}`] = item;
+
+            (props[key] as string[]).push(`<div data-id="${item.id}"></div>`);
+          } else {
+            props[key] = item;
+          }
+        });
+
+        return;
+      }
+
       if (value instanceof Block) {
         children[key] = value;
+        props[key] = `<div data-id="${value.id}"></div>`;
       } else {
         props[key] = value;
       }
@@ -122,17 +141,15 @@ export default class Block<Props extends Record<string, unknown>> {
   protected compile(template: string, props: Record<string, unknown>): DocumentFragment {
     const propsAndStubs: Record<string, unknown> = { ...props, __refs: this.refs };
 
-    Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
-    });
-
     const html = Handlebars.compile(template)(propsAndStubs);
+
     const temp = document.createElement('template');
     temp.innerHTML = html;
 
     Object.values(this.children).forEach((child) => {
       const stub = temp.content.querySelector(`[data-id="${child.id}"]`);
       const content = child.getContent();
+
       if (stub && content) {
         stub.replaceWith(content);
         child.dispatchComponentDidMount();
@@ -142,25 +159,33 @@ export default class Block<Props extends Record<string, unknown>> {
     return temp.content;
   }
 
-  getContent() {
+  getContent(selector: string = ''): HTMLElement {
+    if (selector !== '') {
+      return this._element?.querySelector(selector) as HTMLElement;
+    }
+
     return this._element;
   }
 
   private _addEvents() {
     const { events = {} } = this.props as Record<string, () => void>;
+    const targetElement = this._element?.querySelector('[event-listener]') || this._element;
 
     Object.entries(events).forEach(([event, listener]) => {
-      const eventListener = listener as EventListener;
-      this._element?.addEventListener(event, eventListener);
+      if (this._element instanceof HTMLElement) {
+        targetElement.addEventListener(event, listener as EventListener);
+      }
     });
   }
 
   private _removeEvents() {
     const { events = {} } = this.props as Record<string, () => void>;
+    const targetElement = this._element?.querySelector('[event-listener]') || this._element;
 
     Object.entries(events).forEach(([event, listener]) => {
       const eventListener = listener as EventListener;
-      this._element?.removeEventListener(event, eventListener);
+
+      targetElement?.removeEventListener(event, eventListener);
     });
   }
 
