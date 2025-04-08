@@ -1,57 +1,51 @@
-import Handlebars from "handlebars";
-import "./UserProfile.pcss";
-import {
-  Avatar,
-  BackProfileBlock,
-  FormTitle,
-  Link,
-  ProfileListItem,
-} from "../../components";
-import { User } from "data";
+import Block from '../../core/Block';
+import { Props, User } from '../../data';
+import { Avatar, BackProfileBlock, FormTitle, Link, ProfileListItem } from './../../components';
+import './UserProfile.scss';
 
-interface IProps {
+interface IProps extends Props {
   user: User;
 }
 
-export const UserProfilePage = ({ user }: IProps) => {
-  const profileData = [
-    { label: "Почта", value: user.email },
-    { label: "Логин", value: user.login },
-    { label: "Имя", value: user.firstName },
-    { label: "Фамилия", value: user.lastName },
-    { label: "Имя в чате", value: user.chatName },
-    { label: "Телефон", value: user.phone },
-  ];
+export default class UserProfilePage extends Block<IProps> {
+  constructor(props: IProps) {
+    super({
+      ...props,
+      backProfileBlock: new BackProfileBlock({}),
+      avatar: new Avatar({ imageUrl: props.user.avatarUrl }),
+      title: new FormTitle({ text: 'Профиль пользователя' }),
+      loginInput: new ProfileListItem({ label: 'Логин', value: props.user.login }),
+      firstNameInput: new ProfileListItem({ label: 'Имя', value: props.user.firstName }),
+      lastNameInput: new ProfileListItem({ label: 'Фамилия', value: props.user.lastName }),
+      phoneInput: new ProfileListItem({ label: 'Телефон', value: props.user.phone }),
+      passwordInput: new ProfileListItem({ label: 'Пароль', value: props.user.password }),
+      profileLink1: new Link({ text: 'Изменить пароль', href: '#edit-password' }),
+      profileLink2: new Link({ text: 'Выйти', href: '#logout' })
+    });
+  }
 
-  const profileList = profileData.map((item) => ProfileListItem(item)).join("");
-
-  const profileLinks = [
-    { text: "Изменить данные", href: "#edit-profile" },
-    { text: "Изменить пароль", href: "#edit-password" },
-    { text: "Выйти", href: "#logout", className: "link--logout" },
-  ];
-
-  const profileLinksHTML = profileLinks.map((link) => Link(link)).join("");
-
-  const userProfileTemplate = `
-  <div>
-      {{{backProfileBlock}}}
-      <div class="user-profile">
-        {{{avatar}}}
-        {{{title}}}
-      <div class="profile-info-list">
-        ${profileList}
+  render() {
+    const template = `  
+      <div>
+        {{{backProfileBlock}}}
+        <div class="user-profile">
+            {{{avatar}}}
+            {{{title}}}
+          <div class="profile-info-list">
+            {{{loginInput}}}
+            {{{firstNameInput}}}
+            {{{lastNameInput}}}
+            {{{phoneInput}}}
+            {{{passwordInput}}}
+          </div>
+          <div class="profile-actions">
+            {{{profileLink1}}}
+            {{{profileLink2}}}
+          </div>
+        </div>
       </div>
-      <div class="profile-actions">
-        ${profileLinksHTML}
-      </div>
-    </div>
-  </div>
-`;
+    `;
 
-  return Handlebars.compile(userProfileTemplate)({
-    backProfileBlock: BackProfileBlock,
-    avatar: Avatar({ imageUrl: user.avatarUrl }),
-    title: FormTitle({ text: user.chatName }),
-  });
-};
+    return this.compile(template, this.props);
+  }
+}

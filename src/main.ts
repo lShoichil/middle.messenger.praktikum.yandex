@@ -1,5 +1,5 @@
 import App from './App';
-import './styles/main.pcss';
+import './styles/main.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new App();

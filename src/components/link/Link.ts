@@ -1,14 +1,20 @@
-import Handlebars from "handlebars";
-import "./Link.pcss";
+import { Props } from '../../data';
+import Block from '../../core/Block';
+import './Link.scss';
 
-interface IProps {
+interface IProps extends Props {
   text: string;
   href: string;
   className?: string;
 }
 
-const linkTemplate = `
-  <a href="{{href}}" class="link {{className}}">{{text}}</a>
-`;
+export default class Link extends Block<IProps> {
+  constructor(props: IProps) {
+    super({ ...props });
+  }
 
-export const Link = (props: IProps) => Handlebars.compile(linkTemplate)(props);
+  render() {
+    const template = `  <a href="{{href}}" class="link {{className}}">{{text}}</a>`;
+    return this.compile(template, this.props);
+  }
+}

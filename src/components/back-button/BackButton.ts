@@ -1,10 +1,18 @@
-import Handlebars from "handlebars";
-import "./BackButton.pcss";
+import './BackButton.scss';
+import { Props } from '../../data';
+import Block from '../../core/Block';
+export default class BackButton extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
 
-const backButtonTemplate = `
- <button class="back-button">
-    < Назад
-  </button>
-`;
+  render() {
+    const template = `  
+    <button class="back-button">
+        < Назад
+    </button>
+    `;
 
-export const BackButton = Handlebars.compile(backButtonTemplate);
+    return this.compile(template, this.props);
+  }
+}

@@ -7,21 +7,21 @@
   padding: 20px;
 }
 
-.user-profile__info {
+.user-profile-info {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 510px;
 }
 
-.user-profile__row {
+.user-profile-row {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.user-profile__actions {
+.user-profile-actions {
   display: flex;
   flex-direction: column;
   gap: 11px;

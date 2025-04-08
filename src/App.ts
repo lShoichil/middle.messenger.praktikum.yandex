@@ -1,50 +1,9 @@
-import Handlebars from "handlebars";
-import {
-  Avatar,
-  BackButton,
-  BackProfileBlock,
-  Button,
-  FormTitle,
-  Input,
-  Link,
-  Menu,
-  Modal
-} from "./components";
-import {
-  ChatHeader,
-  ChatInput,
-  ChatItem,
-  ChatList,
-  ChatMessage,
-  ChatPlaceholder,
-  ChatWindow,
-  ProfileButton,
-  SearchBar,
-} from "./pages/messenger/components";
-import { defaultMenuItemsKey, menuItems } from "./components/menu/Menu";
-
-Handlebars.registerPartial("Input", Input);
-Handlebars.registerPartial("Link", Link);
-Handlebars.registerPartial("Button", Button);
-Handlebars.registerPartial("Modal", Modal);
-Handlebars.registerPartial("Avatar", Avatar);
-Handlebars.registerPartial("FormTitle", FormTitle);
-Handlebars.registerPartial("BackButton", BackButton);
-Handlebars.registerPartial("BackProfileBlock", BackProfileBlock);
-
-Handlebars.registerPartial("SearchBar", SearchBar);
-Handlebars.registerPartial("ProfileButton", ProfileButton);
-Handlebars.registerPartial("ChatItem", ChatItem);
-Handlebars.registerPartial("ChatList", ChatList);
-Handlebars.registerPartial("ChatWindow", ChatWindow);
-Handlebars.registerPartial("ChatPlaceholder", ChatPlaceholder);
-Handlebars.registerPartial("ChatHeader", ChatHeader);
-Handlebars.registerPartial("ChatMessage", ChatMessage);
-Handlebars.registerPartial("ChatInput", ChatInput);
+import { defaultMenuItemsKey, menuItems } from './components/menu/Menu';
+import { Menu } from './components';
 
 export default class App {
   state = {
-    currentPage: defaultMenuItemsKey,
+    currentPage: defaultMenuItemsKey
   };
 
   constructor() {
@@ -52,28 +11,38 @@ export default class App {
   }
 
   render() {
-    const Component = menuItems[this.state.currentPage];
-    const appElement = document.getElementById("app");
-    if (!appElement) return console.error("Элемент #app не найден");
+    const PageComponent = menuItems[this.state.currentPage]?.();
 
-    appElement.innerHTML = `
-      <header id="page-header">
-        ${Menu({})}
-      </header>
-      <section id="page-content">
-        ${Component()}
-      </section>
-    `;
+    const appElement = document.getElementById('app');
+    if (!appElement) return console.error('Элемент #app не найден');
+
+    appElement.innerHTML = '';
+
+    const header = document.createElement('header');
+    header.id = 'page-header';
+    header.innerHTML = Menu({});
+    appElement.appendChild(header);
+
+    const section = document.createElement('section');
+    section.id = 'page-content';
+
+    if (PageComponent.getContent()) {
+      section.appendChild(PageComponent.getContent());
+    } else {
+      section.innerHTML = '<p>Страница не найдена</p>';
+    }
+
+    appElement.appendChild(section);
 
     this.attachEventListeners();
   }
 
   attachEventListeners() {
-    document.querySelectorAll(".menu-link").forEach((link) => {
-      link.addEventListener("click", (e) => {
+    document.querySelectorAll('.menu-link').forEach((link) => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = (e.target as HTMLElement).dataset.page;
-        if(page) this.changePage(page);
+        if (page) this.changePage(page);
       });
     });
   }

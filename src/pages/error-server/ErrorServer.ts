@@ -1,12 +1,21 @@
-import Handlebars from "handlebars";
-import "./error.pcss";
+import { Props } from '../../data';
+import Block from '../../core/Block';
+import './error.scss';
 
-const template = `
-<div class="error-container">
-  <h1 class="error-code">500</h1>
-  <p class="error-message">Сервер лёг, а вы идите</p>
-  <a href="/" class="error-link">Назад к чату</a>
-</div>
-`;
+export default class ErrorServerPage extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
 
-export const ErrorServerPage = Handlebars.compile(template);
+  render() {
+    const template = `  
+    <div class="error-container">
+      <h1 class="error-code">500</h1>
+      <p class="error-message">Сервер лёг, а вы идите</p>
+      <a href="/" class="error-link">Назад к чату</a>
+    </div>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}

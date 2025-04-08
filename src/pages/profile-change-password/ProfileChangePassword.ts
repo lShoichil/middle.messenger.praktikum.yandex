@@ -1,62 +1,68 @@
-import Handlebars from "handlebars";
-import "../profile-change-data/ProfileChangeData.pcss";
-import { User } from "../../data";
-import { Avatar, BackProfileBlock, Button, FormTitle, Input } from "../../components";
-
-interface IProps {
+import { Props, User } from '../../data';
+import { Avatar, BackProfileBlock, Button, FormTitle, Input } from '../../components';
+import Block from '../../core/Block';
+import '../profile-change-data/ProfileChangeData.scss';
+interface IProps extends Props {
   user: User;
 }
 
-export const ProfileChangePasswordPage = ({ user }: IProps) => {
-  const profileChangePasswordTemplate = `
-  <div>
-    {{{backProfileBlock}}}
-    <div class="user-profile">
-      {{{avatar}}}
-      {{{title}}}
-      <div class="user-profile__info">
-        <form>
-          {{{oldPasswordInput}}}
-          {{{newPasswordInput}}}
-          {{{newPasswordRepeatInput}}}
-        </form>
-      </div>
-      <div class="user-profile__actions">
-        {{{saveButton}}}
+export default class ProfileChangePassword extends Block<IProps> {
+  constructor(props: IProps) {
+    super({
+      ...props,
+      backProfileBlock: new BackProfileBlock({}),
+      avatar: new Avatar({ imageUrl: props.user.avatarUrl }),
+      title: new FormTitle({ text: props.user.chatName }),
+      oldPasswordInput: new Input({
+        id: 'oldPasswordInput',
+        name: 'password',
+        label: 'Старый пароль',
+        type: 'text',
+        placeholder: 'Введите пароль',
+        value: props.user.password
+      }),
+      newPasswordInput: new Input({
+        id: 'newPasswordInput',
+        name: 'password',
+        label: 'Новый пароль',
+        type: 'password',
+        placeholder: 'Введите пароль'
+      }),
+      newPasswordRepeatInput: new Input({
+        id: 'newPasswordRepeatInput',
+        name: 'password',
+        label: 'Повторите новый пароль',
+        type: 'password',
+        placeholder: 'Введите пароль'
+      }),
+      saveButton: new Button({
+        text: 'Сохранить',
+        type: 'button'
+      })
+    });
+  }
+
+  render() {
+    const template = `  
+    <div>
+      {{{backProfileBlock}}}
+      <div class="user-profile">
+        {{{avatar}}}
+        {{{title}}}
+        <div class="user-profile-info">
+          <form>
+            {{{oldPasswordInput}}}
+            {{{newPasswordInput}}}
+            {{{newPasswordRepeatInput}}}
+          </form>
+        </div>
+        <div class="user-profile-actions">
+          {{{saveButton}}}
+        </div>
       </div>
     </div>
-  </div>
-`;
+    `;
 
-  return Handlebars.compile(profileChangePasswordTemplate)({
-    backProfileBlock: BackProfileBlock,
-    avatar: Avatar({ imageUrl: user.avatarUrl }),
-    title: FormTitle({ text: user.chatName }),
-    oldPasswordInput: Input({
-      id: "oldPasswordInput",
-      name: "password",
-      label: "Старый пароль",
-      type: "text",
-      placeholder: "Введите пароль",
-      value: user.password,
-    }),
-    newPasswordInput: Input({
-      id: "newPasswordInput",
-      name: "password",
-      label: "Новый пароль",
-      type: "password",
-      placeholder: "Введите пароль",
-    }),
-    newPasswordRepeatInput: Input({
-      id: "newPasswordRepeatInput",
-      name: "password",
-      label: "Повторите новый пароль",
-      type: "password",
-      placeholder: "Введите пароль",
-    }),
-    saveButton: Button({
-      text: "Сохранить",
-      type: "button",
-    }),
-  });
-};
+    return this.compile(template, this.props);
+  }
+}

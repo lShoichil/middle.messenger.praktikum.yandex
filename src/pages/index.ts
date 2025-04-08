@@ -1,8 +1,19 @@
-export { LoginPage } from "./login/login";
-export { SignUpPage } from "./sign-up/SignUp";
-export { ModalsView } from "./modals-view/ModalsView";
-export { ErrorNotFoundPage } from "./error-not-found/ErrorNotFound";
-export { ErrorServerPage } from "./error-server/ErrorServer";
-export { UserProfilePage } from "./user-profile/UserProfile";
-export { ProfileChangeDataPage } from "./profile-change-data/ProfileChangeData";
-export { ProfileChangePasswordPage } from "./profile-change-password/ProfileChangePassword";
+import MessengerPage from '../pages/messenger';
+import LoginPage from './login/login';
+import SignUpPage from './sign-up/SignUp';
+import ErrorServerPage from './error-server/ErrorServer';
+import ModalsView from './modals-view/ModalsView';
+import UserProfilePage from './user-profile/UserProfile';
+import ErrorNotFoundPage from './error-not-found/ErrorNotFound';
+import ProfileChangeData from './profile-change-data/ProfileChangeData';
+import ProfileChangePassword from './profile-change-password/ProfileChangePassword';
+
+export { LoginPage };
+export { SignUpPage };
+export { ModalsView };
+export { ErrorNotFoundPage };
+export { ErrorServerPage };
+export { UserProfilePage };
+export { ProfileChangeData };
+export { ProfileChangePassword };
+export { MessengerPage };

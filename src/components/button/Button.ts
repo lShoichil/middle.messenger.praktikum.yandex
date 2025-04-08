@@ -1,10 +1,19 @@
-import Handlebars from "handlebars";
-import "./button.pcss";
+import { Props } from '../../data';
+import Block from '../../core/Block';
+import './button.scss';
 
-const buttonTemplate = `
-  <button id="{{id}}" class="button" type="{{type}}" {{#if disabled}} disabled {{/if}}>
-    {{text}}
-  </button>
-`;
+export default class Button extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
 
-export const Button = Handlebars.compile(buttonTemplate);
+  render() {
+    const template = `  
+    <button id="{{id}}" class="button" type="{{type}}" {{#if disabled}} disabled {{/if}}>
+      {{text}}
+    </button>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}

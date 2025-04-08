@@ -11,18 +11,18 @@
   position: relative;
 }
 
-.chat-message--self {
+.chat-message-self {
   align-self: flex-end;
   background-color: #e4f5fd;
 }
 
-.chat-message__text {
+.chat-message-text {
   font-size: 14px;
   color: #1e1e1e;
   word-break: break-word;
 }
 
-.chat-message__image {
+.chat-message-image {
   max-width: 316px;
   max-height: 211px;
   width: 316px;
@@ -31,7 +31,7 @@
   border-radius: 8px;
 }
 
-.chat-message__time {
+.chat-message-time {
   font-size: 9px;
   color: #999;
   position: absolute;

@@ -1,27 +1,39 @@
-import Handlebars from "handlebars";
-import "./ChatList.pcss";
-import { ChatItem, SearchBar, ProfileButton } from "..";
-import { Chat } from "data/Chat";
+import { ChatItem, SearchBar, ProfileButton } from '..';
+import { Props, Chat } from '../../../../data';
+import Block from '../../../../core/Block';
+import './ChatList.scss';
 
-interface IProps { chats: Chat[] }
+interface IProps extends Props {
+  chats: Chat[];
+}
 
-export const ChatList = (props: IProps) => {
-  const chatListTemplate = `
+export default class ChatList extends Block<IProps> {
+  constructor(props: IProps) {
+    const chatItems = props.chats.map((chat) => new ChatItem({ ...chat }));
+
+    super({
+      ...props,
+      profileButton: new ProfileButton({}),
+      searchBar: new SearchBar({}),
+      chatItems
+    });
+  }
+
+  render() {
+    const template = `
     <div class="chat-list">
-      {{{ProfileButton}}}
-      {{{SearchBar}}}
+      {{{profileButton}}}
+      {{{searchBar}}}
+
       <div class="chat-list-items">
-        {{#each chats}}
-          {{> ChatItem}}
+        {{#each chatItems}}
+          {{{this}}}
         {{/each}}
       </div>
-    </div>
-  `;
 
-  return Handlebars.compile(chatListTemplate)({
-    ProfileButton: ProfileButton({}),
-    SearchBar: SearchBar({}),
-    ChatItem: (chat: Chat) => ChatItem(chat),
-    chats: props.chats,
-  });
-};
+    </div>
+    `;
+
+    return this.compile(template, this.props);
+  }
+}
